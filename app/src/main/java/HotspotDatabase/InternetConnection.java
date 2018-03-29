@@ -7,14 +7,14 @@ import java.net.InetAddress;
 //Internet connection singleton
 
 public class InternetConnection {
-    private boolean internet = false;
+    private boolean internet = false;                           //internet status
 
     private static InternetConnection internetConnection = new InternetConnection();
 
     private InternetConnection(){
     }
 
-    public static InternetConnection getInternetStatus(){
+    public static InternetConnection getInternetConnection(){
         return internetConnection;
     }
 

@@ -10,11 +10,9 @@ import android.widget.Button;
 import com.example.skynet.skynet.R;
 
 import HotspotDatabase.AppDatabase;
-import HotspotDatabase.AsyncStoreSQL;
 import HotspotDatabase.AsycQuery;
+import HotspotDatabase.DatabaseControl;
 import HotspotDatabase.Hotspot;
-import HotspotDatabase.InternetConnection;
-import HotspotDatabase.UpdateDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         //Check internet Status, update SQL if internet avaliable
-        UpdateDatabase.getInstance().refreshDatabase(getApplicationContext());
+        DatabaseControl.getInstance().refreshDatabase(getApplicationContext());
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
