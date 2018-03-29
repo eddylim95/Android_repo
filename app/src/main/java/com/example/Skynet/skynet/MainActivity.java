@@ -9,8 +9,13 @@ import android.widget.Button;
 
 import com.example.skynet.skynet.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import HotspotDatabase.AppDatabase;
 import HotspotDatabase.AsyncStoreSQL;
+import HotspotDatabase.AsycQuery;
+import HotspotDatabase.Hotspot;
 import HotspotDatabase.InternetConnection;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 try {
-                    /*
-                    List<Hotspot> query = new ArrayList<Hotspot>();
-                    query = new AsycQuery(AppDatabase.getInstance(getApplicationContext())).execute();
-                    Log.d("MainActivity", query.get(500).getNAME());
-                    */
+                    Hotspot[] query = new AsycQuery(AppDatabase.getInstance(getApplicationContext())).execute().get();
+                    Log.d("MainActivity", query[500].getNAME());
+
                 }
                 catch (Exception e) {
                     Log.e("MainActivity", "AsyncQuery Error", e);

@@ -15,7 +15,7 @@ import HotspotDatabase.Hotspot;
 @Dao
 public interface HotspotDao {
     @Query("SELECT * FROM hotspot")
-    public List<HotspotDatabase.Hotspot> getAll();
+    public Hotspot[] getAll();
 
     @Query("SELECT * FROM hotspot WHERE ADDRESSPOSTALCODE LIKE :postcode")
     public HotspotDatabase.Hotspot findByPostcode(int postcode);

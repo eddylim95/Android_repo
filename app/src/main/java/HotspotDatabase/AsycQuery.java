@@ -11,18 +11,17 @@ import java.util.List;
  * Created by eddyl on 25/3/2018.
  */
 
-public class AsycQuery extends AsyncTask<Void, Void, List<Hotspot>> {
+public class AsycQuery extends AsyncTask<Void, Void, Hotspot[]> {
 
     private HotspotDatabase.AppDatabase appDatabase;
-    private List<Hotspot> hotspots;
+    private Hotspot[] hotspots;
     public AsycQuery(HotspotDatabase.AppDatabase appDatabase){
         this.appDatabase = appDatabase;
     }
 
-    protected List<Hotspot> doInBackground(Void... voids) {
+    protected Hotspot[] doInBackground(Void... voids) {
         try {
-            List<Hotspot> hotspots = new ArrayList<Hotspot>();
-            hotspots = appDatabase.hotspotDao().getAll();
+            this.hotspots = appDatabase.hotspotDao().getAll();
             Log.d("AsyncQuery", hotspots.toString());//Query test
         }
         catch (Exception e){
@@ -30,15 +29,5 @@ public class AsycQuery extends AsyncTask<Void, Void, List<Hotspot>> {
         }
         return hotspots;
     }
-/*
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-        getHotspots();
-    }
 
-    protected List<Hotspot> getHotspots(){
-        return hotspots;
-    }
-    */
 }
