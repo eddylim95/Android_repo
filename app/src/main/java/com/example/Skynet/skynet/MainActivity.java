@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         //Check internet Status, update SQL if internet avaliable
-        DatabaseControl.getInstance().refreshDatabase(getApplicationContext());
+        DatabaseControl.getDatabaseControl().refreshDatabase(getApplicationContext());
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 try {
                     Hotspot[] query = new AsycQuery(AppDatabase.getInstance(getApplicationContext())).execute().get();
-                    Log.d("MainActivity", query[500].getNAME());
+                    Log.d("MainActivity", query[500].getNAME());                    //debug
                 }
                 catch (Exception e) {
                     Log.e("MainActivity", "AsyncQuery Error", e);

@@ -10,7 +10,7 @@ public class DatabaseControl {
     private DatabaseControl(){
     }
 
-    public static synchronized DatabaseControl getInstance() {
+    public static synchronized DatabaseControl getDatabaseControl() {
         if (mInstance == null) {
             mInstance = new DatabaseControl();
         }
