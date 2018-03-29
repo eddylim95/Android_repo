@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SkyNet</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
+    <string name="test">testing...</string>
+    <string name="menu">Menu</string>
+    <string name="search">Search...</string>
+    <string name="text">Text here</string>
+    <string name="button">Button</string>
+
+</resources>
