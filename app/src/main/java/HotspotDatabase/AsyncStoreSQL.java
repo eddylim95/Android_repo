@@ -4,10 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import HotspotDatabase.AppDatabase;
-import HotspotDatabase.Hotspot;
-import HotspotDatabase.OneMapJsonHandler;
-
 /**
  * Created by eddyl on 25/3/2018.
  */
@@ -18,7 +14,7 @@ public class AsyncStoreSQL extends AsyncTask<Void, Void, Void> {
     private Context context;
     private HotspotDatabase.Hotspot[] hotspots;
 
-    public AsyncStoreSQL(HotspotDatabase.AppDatabase appDatabase, Context context){
+    protected AsyncStoreSQL(HotspotDatabase.AppDatabase appDatabase, Context context){
         this.appDatabase = appDatabase;
         this.context = context;
     }
@@ -44,8 +40,8 @@ public class AsyncStoreSQL extends AsyncTask<Void, Void, Void> {
 
     private void storeInSQL(HotspotDatabase.Hotspot[] hotspots){
         try {
-            appDatabase.hotspotDao().dropTable();
-            appDatabase.hotspotDao().insertAll(hotspots);
+            appDatabase.hotspotDao().dropTable();                   //delete table
+            appDatabase.hotspotDao().insertAll(hotspots);           //create and update table
         }
         catch (Exception e){
             Log.e("Database", "storeInSQL Error", e);

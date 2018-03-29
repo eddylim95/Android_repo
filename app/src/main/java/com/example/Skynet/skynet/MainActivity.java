@@ -9,14 +9,12 @@ import android.widget.Button;
 
 import com.example.skynet.skynet.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import HotspotDatabase.AppDatabase;
 import HotspotDatabase.AsyncStoreSQL;
 import HotspotDatabase.AsycQuery;
 import HotspotDatabase.Hotspot;
 import HotspotDatabase.InternetConnection;
+import HotspotDatabase.UpdateDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,18 +27,8 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        if (InternetConnection.getInternetStatus().getInternet() == true){
-            try {
-                Log.d("MainActivity", "Internet connected");
-                new AsyncStoreSQL(AppDatabase.getInstance(getApplicationContext()),getApplicationContext()).execute();
-            }
-            catch (Exception e){
-                Log.e("MainActivity", "Error, skipping data update", e);
-            }
-        }
-        else {
-            Log.d("MainActivity", "No Internet Connection, skipping Json retrieval");
-        }
+        //Check internet Status, update SQL if internet avaliable
+        UpdateDatabase.getInstance().refreshDatabase(getApplicationContext());
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Hotspot[] query = new AsycQuery(AppDatabase.getInstance(getApplicationContext())).execute().get();
                     Log.d("MainActivity", query[500].getNAME());
-
                 }
                 catch (Exception e) {
                     Log.e("MainActivity", "AsyncQuery Error", e);
