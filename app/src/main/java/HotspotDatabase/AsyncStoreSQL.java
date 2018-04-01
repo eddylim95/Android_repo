@@ -21,8 +21,8 @@ public class AsyncStoreSQL extends AsyncTask<Void, Void, Void> {
 
     protected Void doInBackground(Void... voids) {
         try {
-            OneMapJsonHandler oneMapJsonHandler = new HotspotDatabase.OneMapJsonHandler();
-            hotspots = oneMapJsonHandler.getHotspots(context);
+            ProcessHotspotJson processHotspotJson = new HotspotDatabase.OneMapJsonHandler();
+            hotspots = processHotspotJson.getHotspots(context);
             if (hotspots == null){
                 Log.d("AsyncStoreSQL", "hotspot value is null");
                 return null;
